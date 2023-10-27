@@ -6,11 +6,19 @@ class User {
   }
 }
 
+class Category {
+  contructor(label){
+    this.label = label;
+  }
+}
+
 class Activity {
   constructor(label) {
     this.label = label;
   }
 }
+
+
 const user = new User("Jason");
 userName.textContent = user.name;
 
