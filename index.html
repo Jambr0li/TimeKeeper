@@ -4,15 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>TimeKeeper</title>
   </head>
   <body>
-    <h1>Time Keeper</h1>
+    <h1 class="heading center-text">Time Keeper</h1>
     <div class="flex">
       <div class="user-info">
-        <h1 class="user-name"></h1>
+        <h1 class="user-name center-text"></h1>
+        <h2>Classes:</h2>
+        <ul class="center-text">
+          <li>CS360</li>
+          <li>CS317</li>
+          <li>STATS360</li>
+          <li>CS425</li>
+        </ul>
       </div>
-      <div class="pie-chart"></div>
+      <div class="pie-chart">
+        <h1 class="center-text">Pie</h1>
+        <canvas id="myPieChart"></canvas>
+      </div>
     </div>
   </body>
   <script src="javascript/javascript.js"></script>

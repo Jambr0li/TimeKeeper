@@ -4,7 +4,37 @@
   padding: 0;
 }
 
-h1:hover {
-  transition: 1s;
+.flex {
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+  height: 70vh;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.heading {
   font-size: 4rem;
+  padding: 20px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 40vw;
+  height: 70vh;
+  align-items: center;
+}
+
+.user-name {
+  margin-bottom: 30px;
+}
+
+.pie-chart {
+  padding: 20px;
+  width: 40vw;
+  height: 70vh;
 }
