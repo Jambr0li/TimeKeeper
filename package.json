@@ -1,0 +1,21 @@
+{
+  "name": "timekeeper",
+  "version": "1.0.0",
+  "description": "This app helps users visualize where their time goes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/Jambr0li/TimeKeeper"
+  },
+  "keywords": [
+    "time"
+  ],
+  "author": "Jason",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^10.6.0"
+  }
+}
