@@ -1,5 +1,8 @@
+import '../styles/styles.css'
+import { Chart, PieController, ArcElement, Tooltip, Legend } from 'chart.js';
+Chart.register(PieController, ArcElement, Tooltip, Legend);
 // Import the functions you need from the SDKs you need
-import firebase from "firebase/app";
+import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,7 +17,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
 const userName = document.querySelector(".user-name");
 const createActivityButton = document.querySelector("#create-new-activity");
@@ -82,6 +85,10 @@ const ctx = document.getElementById("myPieChart").getContext("2d");
 const myPieChart = new Chart(ctx, {
   type: "pie",
   data: data,
+  options: {
+    responsive: true, // Makes the chart responsive
+    maintainAspectRatio: true // Adjust aspect ratio according to your need
+  }
 }); 
 
 // git add .
