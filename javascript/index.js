@@ -27,32 +27,12 @@ const auth = getAuth(app);
 
 var ui = new firebaseui.auth.AuthUI(auth);
 const uiConfig = {
+  signInSuccessUrl: 'http://localhost:3000',
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
   ]
 }
-
-
-const googleProvider = new GoogleAuthProvider();
-
-const signInWithGoogle = () => {
-  signInWithRedirect(auth, googleProvider);
-};
-
-const signInWithEmailPassword = (email, password) => {
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ...
-    });
-};
 
 ui.start('#firebaseui-auth-container', uiConfig);
 
@@ -121,9 +101,6 @@ const testCategory = new Category("School");
 testCategory.addLabel("CS360", 2, getRandomHexColor());
 testCategory.addLabel("CS317", 1.5, getRandomHexColor());
 testCategory.addLabel("STATS360", 1, getRandomHexColor());
-
-const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#EAF6FF"];
-const blackArray = ["#000000","#000000","#000000","#000000"]
 
 const data = {
   labels: testCategory.labels,
@@ -195,8 +172,6 @@ const isValidHexColor = function(hex) {
   const regex = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
   return regex.test(hex);
 }
-
-// const userSignIn = function(){};
 
 createActivityButton.addEventListener('click',createActivity);
 
