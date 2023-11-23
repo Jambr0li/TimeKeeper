@@ -2,6 +2,15 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #363A62;
+}
+
+#auth-content {
+  margin-top: 100px;
 }
 
 .hidden {
@@ -32,8 +41,9 @@ input {
 }
 
 .heading {
-  font-size: 4rem;
+  font-size: 128px;
   padding: 20px;
+  letter-spacing: 1rem;
 }
 
 .user-info {
