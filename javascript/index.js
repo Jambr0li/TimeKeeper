@@ -3,6 +3,10 @@ import { Chart, PieController, ArcElement, Tooltip, Legend } from 'chart.js';
 Chart.register(PieController, ArcElement, Tooltip, Legend);
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth, signInWithRedirect, signInWithEmailAndPassword, GoogleAuthProvider, signOut } from "firebase/auth";
+import firebase from 'firebase/compat/app';
+import * as firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,11 +23,63 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+const auth = getAuth(app);
+
+var ui = new firebaseui.auth.AuthUI(auth);
+const uiConfig = {
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+  ]
+}
+
+
+const googleProvider = new GoogleAuthProvider();
+
+const signInWithGoogle = () => {
+  signInWithRedirect(auth, googleProvider);
+};
+
+const signInWithEmailPassword = (email, password) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ...
+    });
+};
+
+ui.start('#firebaseui-auth-container', uiConfig);
+
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    document.getElementById('firebaseui-auth-container').style.display = 'none';
+    document.getElementById('main-content').classList.remove('hidden');
+    document.getElementById('auth-content').classList.add('hidden');
+    // User is signed in
+    // ...
+    userName.textContent = "Welcome " + user.displayName;
+  } else {
+    document.getElementById('firebaseui-auth-container').style.display = 'block';
+    document.getElementById('main-content').classList.add('hidden');
+    document.getElementById('auth-content').classList.remove('hidden');
+    // User is signed out
+    // ...
+  }
+});
+
 const userName = document.querySelector(".user-name");
 const createActivityButton = document.querySelector("#create-new-activity");
 const activityNameInput = document.querySelector("#new-activity-name");
 const activityTimeSpentInput = document.querySelector("#new-activity-time-spent");
 const activityColorInput = document.querySelector("#new-activity-color");
+const signOutButton = document.querySelector("#sign-out");
 
 /* User contains:                          */
 /* User info like name, bday, and w/e else */
@@ -59,8 +115,7 @@ class Category {
 }
 
 
-const user = new User("Jason");
-userName.textContent = user.name;
+//const user = new User("Jason");
 
 const testCategory = new Category("School");
 testCategory.addLabel("CS360", 2, getRandomHexColor());
@@ -141,4 +196,16 @@ const isValidHexColor = function(hex) {
   return regex.test(hex);
 }
 
+// const userSignIn = function(){};
+
 createActivityButton.addEventListener('click',createActivity);
+
+signOutButton.addEventListener('click', () => {
+  signOut(auth).then(() => {
+    console.log("User signed out.");
+    // Handle successful sign-out (redirect, show message, etc.)
+  }).catch((error) => {
+    console.error("Error signing out: ", error);
+    // Handle sign-out errors (display error message, etc.)
+  });
+})

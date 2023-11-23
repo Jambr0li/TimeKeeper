@@ -19,7 +19,8 @@
   "license": "ISC",
   "dependencies": {
     "chart.js": "^4.4.0",
-    "firebase": "^10.6.0"
+    "firebase": "^10.6.0",
+    "firebaseui": "^6.1.0"
   },
   "devDependencies": {
     "css-loader": "^6.8.1",

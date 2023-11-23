@@ -8,22 +8,30 @@
     <title>TimeKeeper</title>
   </head>
   <body>
-    <h1 class="heading center-text">Time Keeper</h1>
-    <div class="flex">
-      <div class="user-info">
-        <h1 class="user-name center-text"></h1>
-        <button id="create-new-activity">Create New Activity</button>
-        <h3>Activity name:</h3>
-        <input type="text" name="activity-name" id="new-activity-name" placeholder="Algebra Class">
-        <h3>Time spent (hours):</h3>
-        <input type="text" name="activity-time-spent" id="new-activity-time-spent" placeholder="0">
-        <h3>Color:</h3>
-        <input type="text" name="activity-time-color" id="new-activity-color" placeholder="#000000 - this is optional">
-      </div>
-      <div class="pie-chart">
-        <h1 class="center-text">Pie</h1>
-        <canvas id="myPieChart"></canvas>
-      </div>
+    <div id="auth-content" class="hidden">
+      <h1 class="heading center-text">Sign in to the TimeKeeper</h1>
+      <div id="firebaseui-auth-container"></div>
     </div>
+    
+    <div id="main-content" class="hidden">
+      <button class = "auth-button"id="sign-out">Sign Out</button>
+      <h1 class="heading center-text">Time Keeper</h1>
+      <div class="flex">
+        <div class="user-info">
+          <h1 class="user-name center-text"></h1>
+          <button id="create-new-activity">Create New Activity</button>
+          <h3>Activity name:</h3>
+          <input type="text" name="activity-name" id="new-activity-name" placeholder="Algebra Class">
+          <h3>Time spent (hours):</h3>
+          <input type="text" name="activity-time-spent" id="new-activity-time-spent" placeholder="0">
+          <h3>Color:</h3>
+          <input type="text" name="activity-time-color" id="new-activity-color" placeholder="#000000 - this is optional">
+        </div>
+        <div class="pie-chart">
+          <h1 class="center-text">Pie</h1>
+          <canvas id="myPieChart"></canvas>
+        </div>
+      </div>
+    </div>  
   </body>
 </html>
